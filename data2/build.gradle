@@ -55,7 +55,6 @@ dependencies {
     implementation deps.koin.koin_viewmodel
 
     implementation deps.room.room
-    implementation deps.room.rxjava
     kapt deps.room.complier
 
     implementation deps.rx.rxjava
