@@ -1,3 +1,6 @@
 package com.example.clean.ui.screen.main
 
-class MainViewModel
+import com.example.clean.ui.base.BaseViewModel
+
+class MainViewModel: BaseViewModel() {
+}
