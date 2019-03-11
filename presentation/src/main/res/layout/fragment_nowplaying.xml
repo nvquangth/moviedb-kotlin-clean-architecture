@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.clean.ui.nowplaying.NowPlayingViewModel" />
+            type="com.example.clean.ui.screen.nowplaying.NowPlayingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
