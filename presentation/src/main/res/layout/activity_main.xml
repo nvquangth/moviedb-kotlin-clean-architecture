@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.clean.ui.main.MainViewModel" />
+            type="com.example.clean.ui.screen.main.MainViewModel" />
     </data>
 
     <FrameLayout

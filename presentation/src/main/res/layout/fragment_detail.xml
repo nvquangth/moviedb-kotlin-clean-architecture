@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.clean.ui.detail.DetailViewModel" />
+            type="com.example.clean.ui.screen.detail.DetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
