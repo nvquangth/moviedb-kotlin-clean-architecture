@@ -13,7 +13,7 @@ interface MovieRepository : Repository {
 
     fun getMovie(id: Int, fromServer: Boolean): Single<Movie>
 
-    fun getMovies(fromServer: Boolean): Single<MutableList<Movie>>
+    fun getMovies(fromServer: Boolean, page: Int?): Single<List<Movie>>
 
     fun insertMovie(movie: Movie): Completable
 

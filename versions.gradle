@@ -75,6 +75,7 @@ deps.koin = koin
 
 def room = [:]
 room.room = "androidx.room:room-runtime:$versions.room"
+room.rxjava = "androidx.room:room-rxjava2:$versions.room"
 room.complier = "androidx.room:room-compiler:$versions.room"
 deps.room = room
 

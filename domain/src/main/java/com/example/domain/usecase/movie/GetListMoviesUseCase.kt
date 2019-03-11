@@ -11,10 +11,10 @@ import io.reactivex.Single
  */
 
 open class GetListMoviesUseCase constructor(private val movieRepository: MovieRepository) :
-    UseCase<GetListMoviesUseCase.Params?, Single<MutableList<Movie>>>() {
-    override fun createObservable(params: Params?): Single<MutableList<Movie>> {
+    UseCase<GetListMoviesUseCase.Params?, Single<List<Movie>>>() {
+    override fun createObservable(params: Params?): Single<List<Movie>> {
         params?.apply {
-            return movieRepository.getMovies(params.fromServer)
+            return movieRepository.getMovies(params.fromServer, params.page)
         }
         return Single.error(Throwable(Constants.PARAMS_ERROR))
     }
@@ -24,5 +24,5 @@ open class GetListMoviesUseCase constructor(private val movieRepository: MovieRe
         // please unSubscribe it
     }
 
-    data class Params(val fromServer: Boolean)
+    data class Params(val fromServer: Boolean, val page: Int?)
 }
