@@ -27,6 +27,7 @@ abstract class BaseLoadMoreRefreshViewModel<Item> : BaseViewModel() {
     val onRefreshListener = SwipeRefreshLayout.OnRefreshListener {
         if (isLoading.value == true || isRefreshing.value == true) return@OnRefreshListener
         isRefreshing.value = true
+        refreshData()
     }
 
     fun refreshData() {
@@ -34,6 +35,14 @@ abstract class BaseLoadMoreRefreshViewModel<Item> : BaseViewModel() {
     }
 
     fun isFirst() = currentPage.value == 0 && (listItem.value == null || listItem.value?.size == 0)
+
+    // Default u must call this fun on first time
+    fun firstLoad() {
+        if (isFirst()) {
+            isLoading.value = true
+            loadData(1)
+        }
+    }
 
     fun getLoadMoreThreshold() = Constants.DEFAULT_NUM_VISIBLE_THRESHOLD
 

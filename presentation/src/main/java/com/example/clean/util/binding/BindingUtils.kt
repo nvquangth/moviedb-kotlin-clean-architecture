@@ -19,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
 import com.example.clean.BuildConfig
 import com.example.clean.Constants
+import com.clean.data.Constants.BASE_IMG_URL
 import com.sample.clean.utils.GlideApp
 import java.io.File
 
@@ -35,6 +36,13 @@ fun SwipeRefreshLayout.customRefreshing(refreshing: Boolean?) {
 @BindingAdapter("onScrollListener")
 fun RecyclerView.customScrollListener(listener: RecyclerView.OnScrollListener?) {
     if (listener != null) addOnScrollListener(listener)
+}
+
+@BindingAdapter("glideUrl")
+fun setImage(imageView: ImageView, url: String?) {
+    Glide.with(imageView.context)
+        .load("${com.clean.data.Constants.BASE_IMG_URL}$url")
+        .into(imageView)
 }
 
 @BindingAdapter("glideSrc")

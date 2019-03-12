@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.clean.data.Constants
 import com.clean.data.MovieRepositoryImpl
 import com.clean.data.local.db.AppDatabase
+import com.clean.data.local.pref.AppPrefs
 import com.clean.data.local.pref.PrefHelper
 import com.example.domain.repository.MovieRepository
 import com.google.gson.Gson
@@ -16,8 +17,8 @@ val repositoryModule = module {
     single { createDatabaseName() }
     single { createAppDatabase(get(), get()) }
     single { createMovieDao(get()) }
-    single { create<PrefHelper>() }
     single { Gson() }
+    singleBy<PrefHelper, AppPrefs>()
     singleBy<MovieRepository, MovieRepositoryImpl>()
 }
 
