@@ -15,10 +15,24 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance()).commit()
+            replaceMainFragment()
         }
 
+        observeData()
+    }
+
+    private fun replaceMainFragment() {
+        var fragment = supportFragmentManager.findFragmentByTag(MainFragment.TAG)
+        if (fragment == null) {
+            fragment = MainFragment.newInstance()
+        }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, fragment, MainFragment.TAG)
+            .addToBackStack(MainFragment.TAG)
+            .commit()
+    }
+
+    private fun observeData() {
         viewModel.isBackActionBar.observe(this, Observer {
             if (it == true) {
                 showBackActionBar()
