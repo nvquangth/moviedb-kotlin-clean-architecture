@@ -1,4 +1,6 @@
 package com.example.clean.ui.screen.detail
 
-class DetailViewModel {
+import com.example.clean.ui.base.BaseViewModel
+
+class DetailViewModel : BaseViewModel() {
 }

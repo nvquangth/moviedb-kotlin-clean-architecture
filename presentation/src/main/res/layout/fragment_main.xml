@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.clean.ui.screen.home.HomeViewModel" />
+            type="com.example.clean.ui.screen.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

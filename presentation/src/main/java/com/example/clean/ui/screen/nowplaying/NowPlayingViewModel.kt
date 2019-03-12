@@ -1,4 +1,6 @@
 package com.example.clean.ui.screen.nowplaying
 
-class NowPlayingViewModel {
+import com.example.clean.ui.base.BaseViewModel
+
+class NowPlayingViewModel : BaseViewModel() {
 }

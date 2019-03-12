@@ -1,3 +1,5 @@
 package com.example.clean.ui.screen.favorite
 
-class FavoriteViewModel
+import com.example.clean.ui.base.BaseViewModel
+
+class FavoriteViewModel : BaseViewModel()

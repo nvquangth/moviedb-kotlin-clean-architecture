@@ -1,9 +1,6 @@
 package com.example.domain.di
 
-import com.example.domain.usecase.movie.DeleteMovieUseCase
-import com.example.domain.usecase.movie.GetListMoviesUseCase
-import com.example.domain.usecase.movie.GetMovieDetailUseCase
-import com.example.domain.usecase.movie.InsertMovieUseCase
+import com.example.domain.usecase.movie.*
 import org.koin.dsl.module.module
 import org.koin.experimental.builder.create
 
@@ -14,7 +11,7 @@ import org.koin.experimental.builder.create
 val useCaseModule = module {
     single { create<DeleteMovieUseCase>() }
     single { create<InsertMovieUseCase>() }
-    single { create<DeleteMovieUseCase>() }
+    single { create<UpdateMovieUseCase>() }
     single { create<GetMovieDetailUseCase>() }
     single { create<GetListMoviesUseCase>() }
 }
