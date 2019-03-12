@@ -1,9 +1,12 @@
 package com.example.clean.model
 
+import android.os.Parcelable
 import com.example.clean.model.base.ItemMapper
 import com.example.clean.model.base.ModelItem
 import com.example.domain.model.Movie
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class MovieItem(
     val id: Int,
     val title: String? = null,
@@ -11,7 +14,7 @@ data class MovieItem(
     val posterPath: String? = null,
     val backdropPath: String? = null,
     val overview: String? = null
-) : ModelItem()
+) : ModelItem(), Parcelable
 
 class MovieItemMapper : ItemMapper<Movie, MovieItem> {
     override fun mapToPresentation(model: Movie) = MovieItem(

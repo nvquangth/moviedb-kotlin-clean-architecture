@@ -40,23 +40,14 @@ class MovieRepositoryImpl constructor(
     }
 
     override fun insertMovie(movie: Movie): Completable {
-        return Completable.create {
-            database.movieDao().insert(mapper.mapToEntity(movie))
-            it.onComplete()
-        }
+        return database.movieDao().insert(mapper.mapToEntity(movie))
     }
 
     override fun deleteMovie(movie: Movie): Completable {
-        return Completable.create {
-            database.movieDao().delete(mapper.mapToEntity(movie))
-            it.onComplete()
-        }
+        return database.movieDao().delete(mapper.mapToEntity(movie))
     }
 
     override fun updateMovie(movie: Movie): Completable {
-        return Completable.create {
-            database.movieDao().update(mapper.mapToEntity(movie))
-            it.onComplete()
-        }
+        return database.movieDao().update(mapper.mapToEntity(movie))
     }
 }

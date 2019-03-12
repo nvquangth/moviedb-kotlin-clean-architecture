@@ -18,4 +18,13 @@ class MovieAdapter(private val listener: (MovieItem) -> Unit) :
 
     }) {
     override fun getLayoutResource(viewType: Int) = R.layout.item_movie
+
+    override fun bindFirstTime(binding: ItemMovieBinding) {
+        super.bindFirstTime(binding)
+        binding.root.setOnClickListener {
+            binding.item?.let {
+                listener.invoke(it)
+            }
+        }
+    }
 }
