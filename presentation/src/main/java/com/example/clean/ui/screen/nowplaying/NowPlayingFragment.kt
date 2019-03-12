@@ -7,12 +7,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clean.databinding.FragmentLoadmoreRefreshBinding
 import com.example.clean.model.MovieItem
 import com.example.clean.ui.base.BaseLoadMoreRefreshFragment
+import com.example.clean.ui.screen.MainActivityViewModel
+import com.example.clean.ui.screen.detail.DetailFragment
 import kotlinx.android.synthetic.main.fragment_loadmore_refresh.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NowPlayingFragment :
     BaseLoadMoreRefreshFragment<FragmentLoadmoreRefreshBinding, NowPlayingViewModel, MovieItem>() {
 
+    private val mainActivityViewModel: MainActivityViewModel by sharedViewModel()
     private val movieAdapter = MovieAdapter(::openDetail)
 
     companion object {
@@ -28,6 +32,8 @@ class NowPlayingFragment :
         setupRecyclerView()
         observeData()
 
+        mainActivityViewModel.titleActionBar.value = "Now Playing Movies"
+        mainActivityViewModel.isBackActionBar.value = false
         viewModel.firstLoad()
     }
 
@@ -51,6 +57,6 @@ class NowPlayingFragment :
     }
 
     private fun openDetail(movie: MovieItem) {
-
+        replaceFragment(DetailFragment.newInstance(movie), DetailFragment.TAG, true)
     }
 }

@@ -16,6 +16,7 @@
 
         <ImageView
             android:id="@+id/image_movie"
+            glideUrl="@{viewModel.movie.posterPath}"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_200"
             android:contentDescription="@string/app_name"
@@ -30,6 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_16"
+            android:text="@{viewModel.movie.title}"
             android:textSize="@dimen/sp_16"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/button_favorite"
@@ -43,7 +45,9 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:contentDescription="@string/app_name"
+            android:onClick="@{() -> viewModel.addOrRemoveFavorite()}"
             android:padding="@dimen/dp_32"
+            android:src="@{viewModel.favorite ? @drawable/ic_favorite_black_24dp :@drawable/ic_favorite_border_black_24dp}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_movie" />
 
@@ -55,6 +59,7 @@
             android:layout_marginLeft="@dimen/dp_8"
             android:layout_marginTop="@dimen/dp_8"
             android:padding="@dimen/dp_16"
+            android:text="@{viewModel.movie.overview}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_title"
