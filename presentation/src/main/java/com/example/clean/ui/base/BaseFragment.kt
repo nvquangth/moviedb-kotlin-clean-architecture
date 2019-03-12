@@ -111,7 +111,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     ) {
         activity?.supportFragmentManager?.beginTransaction()?.add(R.id.container, fragment, tag)
             ?.apply {
-                commitTransaction(this, addToBackStack, transit)
+                commitTransaction(this, addToBackStack, tag, transit)
             }
     }
 
@@ -123,7 +123,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     ) {
         activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, fragment, tag)
             ?.apply {
-                commitTransaction(this, addToBackStack, transit)
+                commitTransaction(this, addToBackStack, tag, transit)
             }
     }
 
@@ -135,7 +135,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         val transaction = parentFragment.childFragmentManager.beginTransaction().add(
             containerViewId, targetFragment, tag
         )
-        commitTransaction(transaction, addToBackStack, transit)
+        commitTransaction(transaction, addToBackStack, tag, transit)
     }
 
     fun replaceChildFragment(
@@ -146,7 +146,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         val transaction = parentFragment.childFragmentManager.beginTransaction().replace(
             containerViewId, targetFragment, tag
         )
-        commitTransaction(transaction, addToBackStack, transit)
+        commitTransaction(transaction, addToBackStack, tag, transit)
     }
 
     fun showDialogFragment(
@@ -170,9 +170,10 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     private fun commitTransaction(
         transaction: FragmentTransaction,
         addToBackStack: Boolean = false,
+        tag: String? = null,
         transit: Int = -1
     ) {
-        if (addToBackStack) transaction.addToBackStack(null)
+        if (addToBackStack) transaction.addToBackStack(tag)
         if (transit != -1) transaction.setTransition(transit)
         transaction.commit()
     }
