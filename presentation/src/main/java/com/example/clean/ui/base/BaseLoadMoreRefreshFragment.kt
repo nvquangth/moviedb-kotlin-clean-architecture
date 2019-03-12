@@ -6,10 +6,9 @@ import com.example.clean.R
 abstract class BaseLoadMoreRefreshFragment<VB : ViewDataBinding, VM : BaseLoadMoreRefreshViewModel<Item>, Item> :
     BaseFragment<VB, VM>() {
 
-
     override fun getLayoutResource() = R.layout.fragment_loadmore_refresh
 
-    override fun handleShowLoading(isLoading: Boolean) {
-        // use progress bar
-    }
+//    override fun handleShowLoading(isLoading: Boolean) {
+//        // use progress bar
+//    }
 }

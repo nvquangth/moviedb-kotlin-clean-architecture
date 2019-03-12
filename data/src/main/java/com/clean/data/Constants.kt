@@ -3,6 +3,7 @@ package com.clean.data
 object Constants {
     const val DATABASE_NAME = "movie.db"
     const val BASE_URL = "https://api.themoviedb.org"
+    const val BASE_IMG_URL = "http://image.tmdb.org/t/p/w185"
     const val CONNECT_TIMEOUT = 10L
     const val READ_TIMEOUT = 10L
     const val WRITE_TIMEOUT = 10L
