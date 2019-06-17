@@ -8,7 +8,7 @@ versions.recyclerview = "1.1.0-alpha02"
 versions.junit = "4.12"
 versions.runner = "1.1.2-alpha02"
 versions.espresso_core = "3.2.0-alpha02"
-versions.android_gradle_plugin = "3.3.2"
+versions.android_gradle_plugin = '3.4.1'
 versions.material = "1.1.0-alpha03"
 versions.vectordrawable = "1.1.0-alpha01"
 
