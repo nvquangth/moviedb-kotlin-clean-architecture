@@ -18,6 +18,8 @@ android {
         versionName = Android.versionName
 
         testInstrumentationRunner = AndroidJUnit.runner
+
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -39,6 +41,10 @@ android {
 
     dataBinding {
         isEnabled = true
+    }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
     }
 
     androidExtensions {
@@ -83,9 +89,14 @@ dependencies {
     implementation(Libs.glide)
     kapt(Libs.glideCompiler)
 
+    implementation(Libs.multidex)
+
+    implementation(Libs.mockitoCore)
     testImplementation(Libs.junit)
     testImplementation(Libs.runner)
     testImplementation(Libs.espressoCore)
+    testImplementation(Libs.mockitoInline)
+    testImplementation(Libs.mockNhaarman)
 
     kapt(Libs.dataBindingCompiler)
 }
