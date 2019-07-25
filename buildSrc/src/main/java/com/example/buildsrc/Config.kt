@@ -3,8 +3,6 @@ object Versions {
     const val coreKtx = "1.1.0-alpha04"
     const val constraintLayout = "1.1.3"
     const val recyclerView = "1.1.0-alpha02"
-    const val junit = "4.12"
-    const val runner = "1.1.2-alpha02"
     const val espressoCore = "3.2.0-alpha02"
     const val androidGradlePlugin = "3.4.1"
     const val material = "1.1.0-alpha03"
@@ -20,7 +18,16 @@ object Versions {
     const val retrofit = "2.5.0"
     const val glide = "4.9.0"
     const val dataBinding = "3.4.1"
+    const val multidex = "2.0.1"
 
+    /**
+     * Testing
+     */
+    const val coreTesting = "1.1.0"
+    const val junit = "4.12"
+    const val runner = "1.1.2-alpha02"
+    const val mockito = "3.0.0"
+    const val mockNhaarman = "2.1.0"
 }
 
 object BuildPlugins {
@@ -71,8 +78,6 @@ object Libs {
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-    const val junit = "junit:junit:${Versions.junit}"
-    const val runner = "androidx.test:runner:${Versions.runner}"
     const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
     const val material = "com.google.android.material:material:${Versions.material}"
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${Versions.vectorDrawable}"
@@ -105,4 +110,15 @@ object Libs {
     const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 
     const val dataBindingCompiler = "androidx.databinding:databinding-compiler:${Versions.dataBinding}"
+
+    const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
+
+    /**
+     * Testing
+     */
+    const val junit = "junit:junit:${Versions.junit}"
+    const val runner = "androidx.test:runner:${Versions.runner}"
+    const val mockitoCore = "org.mockito:mockito-core:${Versions.mockito}"
+    const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockito}"
+    const val mockNhaarman = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockNhaarman}"
 }
