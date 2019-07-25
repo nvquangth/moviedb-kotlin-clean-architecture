@@ -116,6 +116,7 @@ object Libs {
     /**
      * Testing
      */
+    const val archCore = "android.arch.core:core-testing:${Versions.coreTesting}"
     const val junit = "junit:junit:${Versions.junit}"
     const val runner = "androidx.test:runner:${Versions.runner}"
     const val mockitoCore = "org.mockito:mockito-core:${Versions.mockito}"

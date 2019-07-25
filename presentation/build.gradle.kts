@@ -97,6 +97,8 @@ dependencies {
     testImplementation(Libs.espressoCore)
     testImplementation(Libs.mockitoInline)
     testImplementation(Libs.mockNhaarman)
+    testImplementation(Libs.archCore)
+    androidTestImplementation(Libs.archCore)
 
     kapt(Libs.dataBindingCompiler)
 }
