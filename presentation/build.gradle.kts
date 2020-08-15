@@ -1,36 +1,59 @@
-import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
-
 plugins {
-    id(GradlePlugins.android)
-    id(GradlePlugins.kotlinAndroidExt)
-    kotlin(GradlePlugins.kotlinAndroid)
-    kotlin(GradlePlugins.kotlinApt)
-    kotlin(GradlePlugins.kotlinExt)
+    id(com.example.buildSrc.GradlePlugins.androidApplication)
+    id(com.example.buildSrc.GradlePlugins.kotlinAndroid)
+    id(com.example.buildSrc.GradlePlugins.kotlinExt)
+    id(com.example.buildSrc.GradlePlugins.kotlinKapt)
+    id(com.example.buildSrc.GradlePlugins.navSafeArg)
 }
 
 android {
-    compileSdkVersion(Android.targetSdk)
-    defaultConfig {
-        applicationId = Android.applicationId
-        minSdkVersion(Android.minSdk)
-        targetSdkVersion(Android.targetSdk)
-        versionCode = Android.versionCode
-        versionName = Android.versionName
+    compileSdkVersion(com.example.buildSrc.Android.compileSdk)
+    buildToolsVersion(com.example.buildSrc.Android.buildTools)
 
-        testInstrumentationRunner = AndroidJUnit.runner
+    defaultConfig {
+        applicationId = com.example.buildSrc.Android.applicationId
+
+        minSdkVersion(com.example.buildSrc.Android.minSdk)
+        targetSdkVersion(com.example.buildSrc.Android.targetSdk)
+
+        versionCode = com.example.buildSrc.Android.versionCode
+        versionName = com.example.buildSrc.Android.versionNam
+
+        testInstrumentationRunner = com.example.buildSrc.AndroidJUnit.testInstrumentationRunner
 
         multiDexEnabled = true
     }
 
     buildTypes {
-        getByName(BuildType.release) {
-            isMinifyEnabled = BuildType.minifyRelease
-            proguardFiles(BuildType.proguarRelease)
+        getByName(com.example.buildSrc.BuildType.debug) {
+            isMinifyEnabled = com.example.buildSrc.BuildType.minifyDebug
+            proguardFile(com.example.buildSrc.BuildType.proguardDebug)
         }
 
-        getByName(BuildType.debug) {
-            isMinifyEnabled = BuildType.minifyDebug
-            proguardFiles(BuildType.proguarDebug)
+        getByName(com.example.buildSrc.BuildType.release) {
+            isMinifyEnabled = com.example.buildSrc.BuildType.minifyRelease
+            proguardFile(com.example.buildSrc.BuildType.proguardRelease)
+        }
+    }
+
+    flavorDimensions("version")
+    productFlavors {
+        create(com.example.buildSrc.ProductFlavor.develop) {
+            applicationId = com.example.buildSrc.ProductFlavor.applicationIdDevelop
+            versionCode = com.example.buildSrc.ProductFlavor.versionCodeDevelop
+            versionName = com.example.buildSrc.ProductFlavor.versionNameDevelop
+        }
+
+        create(com.example.buildSrc.ProductFlavor.staging) {
+            applicationId = com.example.buildSrc.ProductFlavor.applicationIdStaging
+            versionCode = com.example.buildSrc.ProductFlavor.versionCodeStaging
+            versionName = com.example.buildSrc.ProductFlavor.versionNameStaging
+        }
+
+        create(com.example.buildSrc.ProductFlavor.production) {
+            applicationId = com.example.buildSrc.ProductFlavor.applicationIdProduction
+            versionCode = com.example.buildSrc.ProductFlavor.versionCodeProduction
+            versionName = com.example.buildSrc.ProductFlavor.versionNameProduct
         }
     }
 
@@ -39,64 +62,92 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    dataBinding {
-        isEnabled = true
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    testOptions {
-        unitTests.isReturnDefaultValues = true
+    buildFeatures {
+        dataBinding = true
     }
 
     androidExtensions {
-        configure(delegateClosureOf<AndroidExtensionsExtension> {
-            isExperimental = true
-        })
+        isExperimental = true
     }
 }
 
 dependencies {
-    implementation(project(Modules.data))
-    implementation(project(Modules.domain))
+    implementation(project(com.example.buildSrc.Modules.data))
+    implementation(project(com.example.buildSrc.Modules.domain))
 
-    implementation(Libs.stdlib)
-    implementation(Libs.appcompat)
-    implementation(Libs.coreKtx)
-    implementation(Libs.constraintLayout)
-    implementation(Libs.recyclerView)
-    implementation(Libs.material)
-    implementation(Libs.vectorDrawable)
+    implementation(com.example.buildSrc.BuildPlugins.stdlib)
 
-    implementation(Libs.lifecycle)
-    implementation(Libs.lifecycleJava8)
+    // ConstraintLayout
+    implementation(com.example.buildSrc.Libs.constraintLayout)
 
-    implementation(Libs.koinCore)
-    implementation(Libs.koinScope)
-    implementation(Libs.koinViewModel)
+    // Appcompat
+    implementation(com.example.buildSrc.Libs.appcompat)
 
-    implementation(Libs.roomCore)
-    implementation(Libs.roomJava)
-    kapt(Libs.roomComplier)
+    // Android Core
+    implementation(com.example.buildSrc.Libs.coreKtx)
 
-    implementation(Libs.rxJava)
-    implementation(Libs.rxAndroid)
+    // ViewModel + LiveData Lifecycle
+    implementation(com.example.buildSrc.Libs.viewModel)
+    implementation(com.example.buildSrc.Libs.liveData)
+    implementation(com.example.buildSrc.Libs.lifecycleProcessor)
 
-    implementation(Libs.retrofit)
-    implementation(Libs.retrofitGson)
-    implementation(Libs.retrofitAdapter)
-    implementation(Libs.okHttp)
-    implementation(Libs.okHttpLogging)
+    // Multidex
+    implementation(com.example.buildSrc.Libs.multidex)
 
-    implementation(Libs.glide)
-    kapt(Libs.glideCompiler)
+    // Navigation
+    implementation(com.example.buildSrc.Libs.navigationFragment)
+    implementation(com.example.buildSrc.Libs.navigationUi)
 
-    implementation(Libs.multidex)
+    // RecyclerView
+    implementation(com.example.buildSrc.Libs.recyclerView)
 
-    implementation(Libs.mockitoCore)
-    testImplementation(Libs.junit)
-    testImplementation(Libs.runner)
-    testImplementation(Libs.espressoCore)
-    testImplementation(Libs.mockitoInline)
-    testImplementation(Libs.mockNhaarman)
+    // Room
+    implementation(com.example.buildSrc.Libs.room)
+    implementation(com.example.buildSrc.Libs.roomExt)
+    kapt(com.example.buildSrc.Libs.roomProcessor)
 
-    kapt(Libs.dataBindingCompiler)
+    // ViewPager2
+    implementation(com.example.buildSrc.Libs.viewPager2)
+
+    // Koin
+    implementation(com.example.buildSrc.Libs.koin)
+    implementation(com.example.buildSrc.Libs.koinScope)
+    implementation(com.example.buildSrc.Libs.koinViewModel)
+
+    // Retrofit
+    implementation(com.example.buildSrc.Libs.retrofit)
+    implementation(com.example.buildSrc.Libs.retrofitGson)
+
+    // OkHttp
+    implementation(com.example.buildSrc.Libs.okHttp)
+    implementation(com.example.buildSrc.Libs.okHttpLogging)
+    testImplementation(com.example.buildSrc.Libs.okHttpMockServer)
+
+    // Glide
+    implementation(com.example.buildSrc.Libs.glide)
+    kapt(com.example.buildSrc.Libs.glideProcessor)
+
+    // JUnit
+    testImplementation(com.example.buildSrc.Libs.jUnit)
+    androidTestImplementation(com.example.buildSrc.Libs.jUnitExt)
+    androidTestImplementation(com.example.buildSrc.Libs.espresso)
+
+    // Mockito
+    implementation(com.example.buildSrc.Libs.mockito)
+
+    // Material Design
+    implementation(com.example.buildSrc.Libs.material)
+
+    // CardView
+    implementation(com.example.buildSrc.Libs.cardView)
+
+    // Preference
+    implementation(com.example.buildSrc.Libs.preference)
+
+    // SwipeRefreshLayout
+    implementation(com.example.buildSrc.Libs.swipeRefreshLayout)
 }

@@ -1,5 +1,3 @@
-import java.net.URI
-
 buildscript {
     repositories {
         google()
@@ -7,8 +5,10 @@ buildscript {
     }
 
     dependencies {
-        classpath(kotlin(module = "gradle-plugin", version = Versions.kotlin))
-        classpath(BuildPlugins.androidPlugin)
+        classpath(kotlin(module = "gradle-plugin", version = com.example.buildSrc.Versions.kotlin))
+        classpath(com.example.buildSrc.BuildPlugins.androidPlugin)
+        classpath(com.example.buildSrc.BuildPlugins.koinPlugin)
+        classpath(com.example.buildSrc.BuildPlugins.navSafeArg)
     }
 }
 
@@ -16,16 +16,11 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url = URI.create("https://jitpack.io")
-        }
-
-        tasks.withType(JavaCompile::class.java) {
-            options.compilerArgs.addAll(listOf("-Xlint:unchecked", "-Xlint:deprecation"))
-        }
     }
 }
 
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
+
+apply(plugin = "koin")

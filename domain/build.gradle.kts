@@ -1,14 +1,11 @@
 plugins {
-    id(GradlePlugins.javaLib)
-    id(GradlePlugins.kotlin)
+    id(com.example.buildSrc.GradlePlugins.kotlin)
 }
 dependencies {
-    implementation(Libs.stdlib)
+    implementation(com.example.buildSrc.BuildPlugins.stdlib)
 
-    implementation(Libs.koinCore)
-    implementation(Libs.koinScope)
-    implementation(Libs.koinViewModel)
-
-    implementation(Libs.roomCore)
-    implementation(Libs.roomJava)
+    // Koin
+    implementation(com.example.buildSrc.Libs.koin)
+    implementation(com.example.buildSrc.Libs.koinScope)
+    implementation(com.example.buildSrc.Libs.koinViewModel)
 }
