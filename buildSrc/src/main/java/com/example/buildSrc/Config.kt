@@ -4,6 +4,9 @@ object Versions {
     const val kotlin = "1.3.72"
     const val androidGradlePlugin = "4.0.0"
 
+    // Coroutines
+    const val coroutines = "1.3.8"
+
     // ConstraintLayout
     const val constraintLayout = "1.1.3"
 
@@ -65,6 +68,9 @@ object Versions {
 }
 
 object Libs {
+
+    // Coroutines
+    const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
 
     // ConstraintLayout
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"

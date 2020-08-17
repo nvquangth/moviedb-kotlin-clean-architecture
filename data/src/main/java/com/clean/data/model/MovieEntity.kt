@@ -41,7 +41,7 @@ class MovieEntityMapper : EntityMapper<Movie, MovieEntity> {
         overview = entity.overview
     )
 
-    override fun mapToEntity(model: Movie) = MovieEntity(
+    override fun mapToData(model: Movie) = MovieEntity(
         id = model.id,
         title = model.title,
         vote = model.vote,

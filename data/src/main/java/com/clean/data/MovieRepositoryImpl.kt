@@ -6,8 +6,8 @@ import com.clean.data.model.MovieEntityMapper
 import com.clean.data.remote.api.MovieApi
 import com.example.domain.model.Movie
 import com.example.domain.repository.MovieRepository
-import io.reactivex.Completable
-import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
 
 class MovieRepositoryImpl constructor(
     private val api: MovieApi,
@@ -15,9 +15,10 @@ class MovieRepositoryImpl constructor(
     private val prefHelper: PrefHelper,
     private val mapper: MovieEntityMapper
 ) : MovieRepository {
-    override fun getMovie(id: Int, fromServer: Boolean): Single<Movie> {
+    override fun getMovie(id: Int, fromServer: Boolean): Flow<Movie> {
         if (fromServer) {
-            return api.getMovie(id).map { mapper.mapToDomain(it) }
+            (1..2).asFlow()
+            return api.getMovie(id).asFlow { mapper.mapToDomain(it) }
         }
         return database.movieDao().getMovie(id).map { mapper.mapToDomain(it) }
     }
@@ -39,15 +40,15 @@ class MovieRepositoryImpl constructor(
         }
     }
 
-    override fun insertMovie(movie: Movie): Completable {
-        return database.movieDao().insert(mapper.mapToEntity(movie))
+    override fun insertMovie(movie: Movie): Flow<Boolean> {
+        return database.movieDao().insert(mapper.mapToData(movie))
     }
 
-    override fun deleteMovie(movie: Movie): Completable {
-        return database.movieDao().delete(mapper.mapToEntity(movie))
+    override fun deleteMovie(movie: Movie): Flow<Boolean> {
+        return database.movieDao().delete(mapper.mapToData(movie))
     }
 
-    override fun updateMovie(movie: Movie): Completable {
-        return database.movieDao().update(mapper.mapToEntity(movie))
+    override fun updateMovie(movie: Movie): Flow<Boolean> {
+        return database.movieDao().update(mapper.mapToData(movie))
     }
 }

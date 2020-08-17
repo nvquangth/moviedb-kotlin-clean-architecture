@@ -2,8 +2,7 @@ package com.example.domain.repository
 
 import com.example.domain.model.Movie
 import com.example.domain.repository.base.Repository
-import io.reactivex.Completable
-import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
 
 /**
  *   Created by quangnv on 10/03/2019
@@ -11,13 +10,13 @@ import io.reactivex.Single
 
 interface MovieRepository : Repository {
 
-    fun getMovie(id: Int, fromServer: Boolean): Single<Movie>
+    fun getMovie(id: Int, fromServer: Boolean): Flow<Movie>
 
-    fun getMovies(fromServer: Boolean, page: Int?): Single<List<Movie>>
+    fun getMovies(fromServer: Boolean, page: Int?): Flow<List<Movie>>
 
-    fun insertMovie(movie: Movie): Completable
+    fun insertMovie(movie: Movie): Flow<Boolean>
 
-    fun deleteMovie(movie: Movie): Completable
+    fun deleteMovie(movie: Movie): Flow<Boolean>
 
-    fun updateMovie(movie: Movie): Completable
+    fun updateMovie(movie: Movie): Flow<Boolean>
 }
