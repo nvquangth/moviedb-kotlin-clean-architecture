@@ -5,10 +5,10 @@ buildscript {
     }
 
     dependencies {
-        classpath(kotlin(module = "gradle-plugin", version = com.example.buildSrc.Versions.kotlin))
-        classpath(com.example.buildSrc.BuildPlugins.androidPlugin)
-        classpath(com.example.buildSrc.BuildPlugins.koinPlugin)
-        classpath(com.example.buildSrc.BuildPlugins.navSafeArg)
+        classpath(kotlin(module = "gradle-plugin", version = Versions.kotlin))
+        classpath(BuildPlugins.androidPlugin)
+        classpath(BuildPlugins.koinPlugin)
+        classpath(BuildPlugins.navSafeArg)
     }
 }
 

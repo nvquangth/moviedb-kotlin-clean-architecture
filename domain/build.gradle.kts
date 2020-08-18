@@ -1,14 +1,13 @@
 plugins {
-    id(com.example.buildSrc.GradlePlugins.kotlin)
-    id(com.example.buildSrc.GradlePlugins.kotlinKapt)
+    id(GradlePlugins.kotlin)
 }
 dependencies {
-    implementation(com.example.buildSrc.BuildPlugins.stdlib)
+    implementation(BuildPlugins.stdlib)
 
-    implementation(com.example.buildSrc.Libs.coroutines)
+    implementation(Libs.coroutines)
 
     // Koin
-    implementation(com.example.buildSrc.Libs.koin)
-    implementation(com.example.buildSrc.Libs.koinScope)
-    implementation(com.example.buildSrc.Libs.koinViewModel)
+    implementation(Libs.koin)
+    implementation(Libs.koinScope)
+    implementation(Libs.koinViewModel)
 }

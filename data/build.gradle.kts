@@ -1,101 +1,101 @@
 plugins {
-    id(com.example.buildSrc.GradlePlugins.androidApplication)
-    id(com.example.buildSrc.GradlePlugins.kotlinAndroid)
-    id(com.example.buildSrc.GradlePlugins.kotlinExt)
-    id(com.example.buildSrc.GradlePlugins.kotlinKapt)
+    id(GradlePlugins.androidApplication)
+    id(GradlePlugins.kotlinAndroid)
+    id(GradlePlugins.kotlinExt)
+    id(GradlePlugins.kotlinKapt)
 }
 
 android {
-    compileSdkVersion(com.example.buildSrc.Android.compileSdk)
+    compileSdkVersion(Android.compileSdk)
 
     defaultConfig {
-        minSdkVersion(com.example.buildSrc.Android.minSdk)
-        targetSdkVersion(com.example.buildSrc.Android.targetSdk)
+        minSdkVersion(Android.minSdk)
+        targetSdkVersion(Android.targetSdk)
 
-        testInstrumentationRunner = com.example.buildSrc.AndroidJUnit.testInstrumentationRunner
+        testInstrumentationRunner = AndroidJUnit.testInstrumentationRunner
     }
 
     buildTypes {
-        getByName(com.example.buildSrc.BuildType.debug) {
-            isMinifyEnabled = com.example.buildSrc.BuildType.minifyDebug
-            proguardFile(com.example.buildSrc.BuildType.proguardDebug)
+        getByName(BuildType.debug) {
+            isMinifyEnabled = BuildType.minifyDebug
+            proguardFile(BuildType.proguardDebug)
         }
 
-        getByName(com.example.buildSrc.BuildType.release) {
-            isMinifyEnabled = com.example.buildSrc.BuildType.minifyRelease
-            proguardFile(com.example.buildSrc.BuildType.proguardRelease)
+        getByName(BuildType.release) {
+            isMinifyEnabled = BuildType.minifyRelease
+            proguardFile(BuildType.proguardRelease)
         }
     }
 
     flavorDimensions("version")
     productFlavors {
-        create(com.example.buildSrc.ProductFlavor.develop) {
-            applicationId = com.example.buildSrc.ProductFlavor.applicationIdDevelop
-            versionCode = com.example.buildSrc.ProductFlavor.versionCodeDevelop
-            versionName = com.example.buildSrc.ProductFlavor.versionNameDevelop
+        create(ProductFlavor.develop) {
+            applicationId = ProductFlavor.applicationIdDevelop
+            versionCode = ProductFlavor.versionCodeDevelop
+            versionName = ProductFlavor.versionNameDevelop
 
             buildConfigField(
                 "String",
-                com.example.buildSrc.ProductFlavor.baseUrlParam,
-                com.example.buildSrc.ProductFlavor.baseUrlDevelop
+                ProductFlavor.baseUrlParam,
+                ProductFlavor.baseUrlDevelop
             )
         }
 
-        create(com.example.buildSrc.ProductFlavor.staging) {
-            applicationId = com.example.buildSrc.ProductFlavor.applicationIdStaging
-            versionCode = com.example.buildSrc.ProductFlavor.versionCodeStaging
-            versionName = com.example.buildSrc.ProductFlavor.versionNameStaging
+        create(ProductFlavor.staging) {
+            applicationId = ProductFlavor.applicationIdStaging
+            versionCode = ProductFlavor.versionCodeStaging
+            versionName = ProductFlavor.versionNameStaging
 
             buildConfigField(
                 "String",
-                com.example.buildSrc.ProductFlavor.baseUrlParam,
-                com.example.buildSrc.ProductFlavor.baseUrlStaging
+                ProductFlavor.baseUrlParam,
+                ProductFlavor.baseUrlStaging
             )
         }
 
-        create(com.example.buildSrc.ProductFlavor.production) {
-            applicationId = com.example.buildSrc.ProductFlavor.applicationIdProduction
-            versionCode = com.example.buildSrc.ProductFlavor.versionCodeProduction
-            versionName = com.example.buildSrc.ProductFlavor.versionNameProduct
+        create(ProductFlavor.production) {
+            applicationId = ProductFlavor.applicationIdProduction
+            versionCode = ProductFlavor.versionCodeProduction
+            versionName = ProductFlavor.versionNameProduct
 
             buildConfigField(
                 "String",
-                com.example.buildSrc.ProductFlavor.baseUrlParam,
-                com.example.buildSrc.ProductFlavor.baseUrlProduction
+                ProductFlavor.baseUrlParam,
+                ProductFlavor.baseUrlProduction
             )
         }
     }
 }
 
 dependencies {
-    implementation(project(com.example.buildSrc.Modules.domain))
+    implementation(project(Modules.domain))
 
-    implementation(com.example.buildSrc.BuildPlugins.stdlib)
+    implementation(BuildPlugins.stdlib)
 
     // Koin
-    implementation(com.example.buildSrc.Libs.koin)
-    implementation(com.example.buildSrc.Libs.koinScope)
-    implementation(com.example.buildSrc.Libs.koinViewModel)
+    implementation(Libs.koin)
+    implementation(Libs.koinScope)
+    implementation(Libs.koinViewModel)
 
     // Room
-    implementation(com.example.buildSrc.Libs.room)
-    implementation(com.example.buildSrc.Libs.roomExt)
-    kapt(com.example.buildSrc.Libs.roomProcessor)
+    implementation(Libs.room)
+    implementation(Libs.roomExt)
+    kapt(Libs.roomProcessor)
 
     // Retrofit
-    implementation(com.example.buildSrc.Libs.retrofit)
-    implementation(com.example.buildSrc.Libs.retrofitGson)
+    implementation(Libs.retrofit)
+    implementation(Libs.retrofitGson)
 
     // OkHttp
-    implementation(com.example.buildSrc.Libs.okHttp)
-    implementation(com.example.buildSrc.Libs.okHttpLogging)
-    testImplementation(com.example.buildSrc.Libs.okHttpMockServer)
+    implementation(Libs.okHttp)
+    implementation(Libs.okHttpLogging)
+    testImplementation(Libs.okHttpMockServer)
 
     // JUnit
-    testImplementation(com.example.buildSrc.Libs.jUnit)
-    androidTestImplementation(com.example.buildSrc.Libs.jUnitExt)
-    androidTestImplementation(com.example.buildSrc.Libs.espresso)
+    testImplementation(Libs.jUnit)
+    androidTestImplementation(Libs.jUnitExt)
+    androidTestImplementation(Libs.espresso)
 
     // Mockito
-    implementation(com.example.buildSrc.Libs.mockito)
+    implementation(Libs.mockito)
 }

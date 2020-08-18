@@ -1,5 +1,3 @@
-package com.example.buildSrc
-
 object Versions {
     const val kotlin = "1.3.72"
     const val androidGradlePlugin = "4.0.0"
