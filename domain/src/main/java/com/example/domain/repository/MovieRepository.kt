@@ -1,14 +1,13 @@
 package com.example.domain.repository
 
 import com.example.domain.model.Movie
-import com.example.domain.repository.base.Repository
 import kotlinx.coroutines.flow.Flow
 
 /**
  *   Created by quangnv on 10/03/2019
  */
 
-interface MovieRepository : Repository {
+interface MovieRepository {
 
     fun getMovie(id: Int, fromServer: Boolean): Flow<Movie>
 

@@ -1,9 +1,8 @@
 package com.clean.data.di
 
 import com.clean.data.model.MovieEntityMapper
-import org.koin.dsl.module.module
-import org.koin.experimental.builder.create
+import org.koin.dsl.module
 
 val entityMapperModule = module {
-    single { create<MovieEntityMapper>() }
+    single { MovieEntityMapper() }
 }

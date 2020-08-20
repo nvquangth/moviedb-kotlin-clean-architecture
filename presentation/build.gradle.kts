@@ -1,8 +1,8 @@
 plugins {
-    id(GradlePlugins.androidApplication)
-    id(GradlePlugins.kotlinAndroid)
-    id(GradlePlugins.kotlinExt)
-    id(GradlePlugins.kotlinKapt)
+    id(GradlePlugins.android)
+    kotlin(GradlePlugins.kotlinAndroid)
+    kotlin(GradlePlugins.kotlinApt)
+    kotlin(GradlePlugins.kotlinExt)
     id(GradlePlugins.navSafeArg)
 }
 
@@ -77,6 +77,7 @@ android {
 
 dependencies {
     implementation(project(Modules.domain))
+    implementation(project(Modules.data))
 
     implementation(BuildPlugins.stdlib)
 

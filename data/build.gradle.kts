@@ -1,8 +1,9 @@
 plugins {
-    id(GradlePlugins.androidApplication)
-    id(GradlePlugins.kotlinAndroid)
-    id(GradlePlugins.kotlinExt)
-    id(GradlePlugins.kotlinKapt)
+    id(GradlePlugins.android)
+    kotlin(GradlePlugins.kotlinAndroid)
+    kotlin(GradlePlugins.kotlinApt)
+    kotlin(GradlePlugins.kotlinExt)
+    id(GradlePlugins.navSafeArg)
 }
 
 android {
@@ -65,6 +66,10 @@ android {
             )
         }
     }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
@@ -75,7 +80,6 @@ dependencies {
     // Koin
     implementation(Libs.koin)
     implementation(Libs.koinScope)
-    implementation(Libs.koinViewModel)
 
     // Room
     implementation(Libs.room)

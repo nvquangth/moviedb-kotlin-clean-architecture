@@ -1,17 +1,16 @@
 package com.example.domain.di
 
 import com.example.domain.usecase.movie.*
-import org.koin.dsl.module.module
-import org.koin.experimental.builder.create
+import org.koin.dsl.module
 
 /**
  *   Created by quangnv on 10/03/2019
  */
 
 val useCaseModule = module {
-    single { create<DeleteMovieUseCase>() }
-    single { create<InsertMovieUseCase>() }
-    single { create<UpdateMovieUseCase>() }
-    single { create<GetMovieDetailUseCase>() }
-    single { create<GetListMoviesUseCase>() }
+    single { DeleteMovieUseCase(get()) }
+    single { InsertMovieUseCase(get()) }
+    single { UpdateMovieUseCase(get()) }
+    single { GetMovieDetailUseCase(get()) }
+    single { GetListMoviesUseCase(get()) }
 }

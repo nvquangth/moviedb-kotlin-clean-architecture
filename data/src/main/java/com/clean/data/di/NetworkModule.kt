@@ -1,15 +1,13 @@
 package com.clean.data.di
 
-import com.clean.data.BuildConfig
 import com.clean.data.Constants
 import com.clean.data.remote.api.MovieApi
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -32,12 +30,12 @@ fun createHeaderInterceptor(): Interceptor {
     return Interceptor { chain ->
         val request = chain.request()
         val newUrl =
-            request.url().newBuilder().addQueryParameter(Constants.API_KEY_PAR, Constants.API_KEY)
+            request.url.newBuilder().addQueryParameter(Constants.API_KEY_PAR, Constants.API_KEY)
                 .build()
         val newRequest = request.newBuilder()
             .url(newUrl)
             .header("Content-Type", "application/json")
-            .method(request.method(), request.body())
+            .method(request.method, request.body)
             .build()
         chain.proceed(newRequest)
     }
@@ -54,7 +52,6 @@ fun createOkHttpClient(logging: Interceptor, header: Interceptor): OkHttpClient 
 
 fun createRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder().baseUrl(Constants.BASE_URL)
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
         .client(okHttpClient)
         .build()
